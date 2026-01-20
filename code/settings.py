@@ -32,6 +32,9 @@ BAR_COLOR = '#EEEEEE'
 BAR_COLOR_SELECTED = '#111111'
 UPGRADE_BG_COLOR_SELECTED = '#EEEEEE'
 
+OUTLINE_COLOR = 'black'
+OUTLINE_WIDTH = 3
+
 weapon_data = {
     'sword': {'cooldown': 100, 'damage': 15, 'graphic': join('graphics', 'weapons', 'sword', 'full.png')},
     'lance': {'cooldown': 400, 'damage': 30, 'graphic': join('graphics', 'weapons', 'lance', 'full.png')},
