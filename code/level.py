@@ -54,12 +54,15 @@ class Level:
                         
                         if style == 'boundary':
                             Tile((x, y), [self.obstacle_sprites], 'invisible')
+                            
                         if style == 'grass':
                             random_grass_image = choice(graphics['grass'])
                             Tile((x, y), [self.visible_sprites, self.attackable_sprites, self.obstacle_sprites], 'grass', random_grass_image)
+                            
                         if style == 'object':
                             surf = graphics['objects'][int(col)]
                             Tile((x, y), [self.visible_sprites, self.obstacle_sprites], 'object', surf)
+                            
                         if style == 'entities':
                             if col == '394':
                                 self.player = Player(
@@ -99,12 +102,14 @@ class Level:
     def destroy_attack(self):
         if self.current_attack:
             self.current_attack.kill()
+            
         self.current_attack = None
     
     def player_attack_logic(self):
         if self.attack_sprites:
             for attack_sprite in self.attack_sprites:
                 collision_sprites = pygame.sprite.spritecollide(attack_sprite, self.attackable_sprites, False)
+                
                 if collision_sprites:
                     for target_sprite in collision_sprites:
                         if target_sprite.sprite_type == 'grass':
@@ -123,6 +128,7 @@ class Level:
             self.player.health -= amount
             self.player.vulnerable = False
             self.player.hit_time = pygame.time.get_ticks()
+            
             self.animation_player.create_particles(attack_type, self.player.rect.center, [self.visible_sprites])
     
     def trigger_death_particles(self, pos, particle_type):

@@ -6,12 +6,13 @@ from title import Title
 class Game:
     def __init__(self):
         pygame.init()
+        
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption("The Legend of Zelda")
-        icon = pygame.image.load(join('graphics', 'icon.png'))
+        icon = pygame.image.load(join('graphics', 'icon', 'icon.png'))
         pygame.display.set_icon(icon)
-        self.clock = pygame.time.Clock()
         
+        self.clock = pygame.time.Clock()
         self.title = Title(self.screen)
         self.level = None
         self.game_started = False
@@ -42,8 +43,10 @@ class Game:
                 self.level.run()
             
             pygame.display.update()
+            
             self.clock.tick(FPS)
             
 if __name__ == '__main__':
     game = Game()
+    
     game.run()

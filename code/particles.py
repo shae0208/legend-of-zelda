@@ -42,16 +42,19 @@ class AnimationPlayer:
         
         for frame in frames:
             flipped_frame = pygame.transform.flip(frame, True, False)
+            
             flipped_frames.append(flipped_frame)
             
         return flipped_frames
 
     def create_grass_particles(self, pos, groups):
         animation_frames = choice(self.frames['leaf'])
+        
         ParticleEffect(pos, animation_frames, groups)
         
     def create_particles(self, animation_type, pos, groups):
         animation_frames = self.frames[animation_type]
+        
         ParticleEffect(pos, animation_frames, groups)
 
 class ParticleEffect(pygame.sprite.Sprite):
@@ -66,6 +69,7 @@ class ParticleEffect(pygame.sprite.Sprite):
         
     def animate(self):
         self.frame_index += self.animation_speed
+        
         if self.frame_index >= len(self.frames):
             self.kill()
         else:

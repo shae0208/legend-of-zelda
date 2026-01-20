@@ -12,6 +12,7 @@ class Upgrade:
         
         self.height = self.display_surface.get_size()[1] * 0.8
         self.width = self.display_surface.get_size()[0] // 6
+        
         self.create_items()
         
         self.selection_index = 0
@@ -39,6 +40,7 @@ class Upgrade:
     def selection_cooldown(self):
         if not self.can_move:
             current_time = pygame.time.get_ticks()
+            
             if current_time - self.selection_time >= 300:
                 self.can_move = True
     
@@ -49,10 +51,9 @@ class Upgrade:
             full_width = self.display_surface.get_size()[0]
             increment = full_width // self.attribute_nr
             left = (item * increment) + (increment - self.width) // 2
-            
             top = self.display_surface.get_size()[1] * 0.1
-            
             item = Item(left, top, self.width, self.height, index, self.font)
+            
             self.item_list.append(item)
         
     def display(self):

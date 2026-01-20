@@ -38,6 +38,7 @@ class Player(Entity):
         self.magic_switch_time = None
         self.magic_switch_cooldown = 200
         
+        # stats
         self.stats = {'health': 100, 'energy': 60, 'attack': 10, 'magic': 4, 'speed': 5}
         self.max_stats = {'health': 300, 'energy': 140, 'attack': 20, 'magic': 10, 'speed': 10}
         self.upgrade_cost = {'health': 100, 'energy': 100, 'attack': 100, 'magic': 100, 'speed': 100}
@@ -173,6 +174,7 @@ class Player(Entity):
         animation = self.animations[self.status]
         
         self.frame_index += self.animation_speed
+        
         if self.frame_index >= len(animation):
             self.frame_index = 0
         

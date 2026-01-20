@@ -48,6 +48,7 @@ class Enemy(Entity):
     def import_graphics(self, name):
         self.animations = {'idle': [], 'move': [], 'attack': []}
         main_path = join('graphics', 'monsters', f'{name}')
+        
         for animation in self.animations.keys():
             self.animations[animation] = import_folder(join(main_path, animation))
     
@@ -93,6 +94,7 @@ class Enemy(Entity):
         if self.frame_index >= len(self.animations[self.status]):
             if self.status == 'attack':
                 self.can_attack = False
+                
             self.frame_index = 0
         
         self.image = animation[int(self.frame_index)]

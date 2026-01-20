@@ -11,16 +11,20 @@ class UI:
 
         # convert weapon dictionary
         self.weapon_graphics = []
+        
         for weapon in weapon_data.values():
             path = weapon['graphic']
             weapon = pygame.image.load(path).convert_alpha()
+            
             self.weapon_graphics.append(weapon)
         
         # convert magic dictionary
         self.magic_graphics = []
+        
         for magic in magic_data.values():
             path = magic['graphic']
             magic = pygame.image.load(path).convert_alpha()
+            
             self.magic_graphics.append(magic)
         
     def show_bar(self, current, max_amount, bg_rect, color):
@@ -40,11 +44,14 @@ class UI:
         
         pygame.draw.rect(self.display_surface, UI_BG_COLOR, text_rect.inflate(20, 20))
         pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, text_rect.inflate(20, 20), 3)
+        
         self.display_surface.blit(text_surf, text_rect)
     
     def selection_box(self, left, top, has_switched):
         bg_rect = pygame.Rect(left, top, ITEM_BOX_SIZE, ITEM_BOX_SIZE)
+        
         pygame.draw.rect(self.display_surface, UI_BG_COLOR, bg_rect)
+        
         if has_switched:
             pygame.draw.rect(self.display_surface, UI_BORDER_COLOR_ACTIVE, bg_rect, 3)
         else:
