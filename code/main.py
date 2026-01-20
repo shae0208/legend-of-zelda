@@ -25,7 +25,7 @@ class Game:
         main_sound.play(-1)
     
     def run(self):
-        while True:
+        while True:            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()

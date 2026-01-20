@@ -4,7 +4,15 @@ from settings import *
 class Title:
     def __init__(self, surface):
         self.display_surface = surface
-        self.background_img = pygame.transform.scale(pygame.image.load(join('graphics', 'background', 'background.png')), (WIDTH, HEIGHT)).convert()
+        
+        self.bg_images = []
+        for i in range(1, 8):
+            bg_image = pygame.transform.scale(pygame.image.load(join('graphics', 'background', f'bg_{i}.png')).convert_alpha(), (WIDTH, HEIGHT))
+            self.bg_images.append(bg_image)
+        
+        self.bg_width = WIDTH
+        self.tiles = 2
+        self.scroll_values = [0] * len(self.bg_images)
         
         self.font_title = pygame.font.Font(UI_FONT, 64)
         self.font_instr = pygame.font.Font(UI_FONT, 32)
@@ -36,6 +44,16 @@ class Title:
         return outline_surface
     
     def display(self):
-        self.display_surface.blit(self.background_img, (0, 0))
+        for idx, i in enumerate(self.bg_images):
+            speed = 0.5 + (0.25 * idx)
+            self.scroll_values[idx] += speed
+            
+            for x in range(self.tiles):
+                self.display_surface.blit(i, ((x * self.bg_width) - self.scroll_values[idx], 0))
+                self.display_surface.blit(i, ((x * self.bg_width) - self.scroll_values[idx] + self.bg_width, 0))
+            
+            if self.scroll_values[idx] >= self.bg_width:
+                self.scroll_values[idx] = 0
+        
         self.display_surface.blit(self.title_surface, self.title_rect)
         self.display_surface.blit(self.instr_surface, self.instr_rect)
